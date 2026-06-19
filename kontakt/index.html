@@ -106,38 +106,140 @@
               <span>09:00 - 19:00 Uhr</span>
               <span>Vor-Ort-Beratung</span>
             </div>
-            <div class="panel-metrics">
-              <div>
-                <strong>0176</strong>
-                <span>677 56 118</span>
-              </div>
-              <div>
-                <strong>2007</strong>
-                <span>Erfahrung im Handwerk</span>
-              </div>
+            <div class="panel-actions">
+              <a class="panel-call-button" href="tel:+4917667756118">Anrufen</a>
+              <a class="panel-mail-button" href="mailto:info@ks-parkett.de"
+                >E-Mail senden</a
+              >
             </div>
           </aside>
         </section>
 
-        <section class="content-split section-pad">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Anfrage</p>
-            <h2>Kurze Wege, klare Rückmeldung.</h2>
+        <section class="contact-section section-pad">
+          <div class="contact-form-card reveal">
+            <div class="section-heading">
+              <p class="eyebrow">Anfrage senden</p>
+              <h2>Erzählen Sie uns kurz, worum es geht.</h2>
+              <p>
+                Je genauer die Angaben, desto schneller können wir Aufwand,
+                Ablauf und einen passenden Termin einschätzen.
+              </p>
+            </div>
+
+            <form
+              class="contact-form"
+              action="mailto:info@ks-parkett.de"
+              method="post"
+              enctype="text/plain"
+            >
+              <div class="form-grid">
+                <label>
+                  <span>Name</span>
+                  <input type="text" name="Name" autocomplete="name" required />
+                </label>
+
+                <label>
+                  <span>Telefon</span>
+                  <input
+                    type="tel"
+                    name="Telefon"
+                    autocomplete="tel"
+                    required
+                  />
+                </label>
+              </div>
+
+              <div class="form-grid">
+                <label>
+                  <span>E-Mail</span>
+                  <input type="email" name="E-Mail" autocomplete="email" />
+                </label>
+
+                <label>
+                  <span>Leistung</span>
+                  <select name="Leistung" required>
+                    <option value="">Bitte wählen</option>
+                    <option>Parkett verlegen</option>
+                    <option>Parkett schleifen</option>
+                    <option>Designboden & Vinyl</option>
+                    <option>PVC oder Linoleum</option>
+                    <option>Teppichboden</option>
+                    <option>Laminatboden</option>
+                    <option>Beratung vor Ort</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                <span>Ort und Fläche</span>
+                <input
+                  type="text"
+                  name="Ort und Flaeche"
+                  placeholder="z. B. München-Sendling, ca. 45 m²"
+                />
+              </label>
+
+              <label>
+                <span>Nachricht</span>
+                <textarea
+                  name="Nachricht"
+                  rows="6"
+                  placeholder="Aktueller Boden, gewünschter Belag, Zeitfenster oder besondere Details"
+                  required
+                ></textarea>
+              </label>
+
+              <label class="form-consent">
+                <input type="checkbox" name="Datenschutz akzeptiert" required />
+                <span>
+                  Ich bin damit einverstanden, dass meine Angaben zur
+                  Bearbeitung der Anfrage verwendet werden.
+                </span>
+              </label>
+
+              <div class="form-actions">
+                <button class="button primary" type="submit">
+                  Anfrage senden
+                </button>
+                <a class="button form-call" href="tel:+4917667756118"
+                  >Anrufen</a
+                >
+              </div>
+            </form>
           </div>
-          <div class="rich-copy reveal">
-            <p>
-              <strong>Telefon:</strong>
-              <a href="tel:+4917667756118">0176 677 56 118</a>
-            </p>
-            <p>
-              <strong>E-Mail:</strong>
-              <a href="mailto:info@ks-parkett.de">info@ks-parkett.de</a>
-            </p>
-            <p><strong>Adresse:</strong> Guardinistraße 16, 81375 München</p>
-            <p>
-              Hilfreich für eine schnelle Einschätzung sind Raumgröße, aktueller
-              Boden, gewünschter Belag und ein paar Fotos der Fläche.
-            </p>
+
+          <div class="contact-sidebar reveal" aria-label="Kontaktablauf">
+            <div class="contact-info-block">
+              <span>01</span>
+              <h3>Anfrage</h3>
+              <p>
+                Sie nennen Bodenart, Fläche, Ort und gewünschtes Zeitfenster.
+              </p>
+            </div>
+            <div class="contact-info-block">
+              <span>02</span>
+              <h3>Rückmeldung</h3>
+              <p>
+                Wir melden uns mit Rückfragen oder schlagen direkt einen Termin
+                vor.
+              </p>
+            </div>
+            <div class="contact-info-block">
+              <span>03</span>
+              <h3>Vor-Ort-Beratung</h3>
+              <p>
+                Bei Bedarf prüfen wir Untergrund, Maße und Details direkt bei
+                Ihnen.
+              </p>
+            </div>
+            <div class="contact-direct">
+              <p class="eyebrow">Direkter Kontakt</p>
+              <h3>Für eilige Termine lieber kurz anrufen.</h3>
+              <a class="button primary" href="tel:+4917667756118">Anrufen</a>
+              <a class="contact-mail" href="mailto:info@ks-parkett.de"
+                >info@ks-parkett.de</a
+              >
+            </div>
           </div>
         </section>
       </main>
