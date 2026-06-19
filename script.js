@@ -6,6 +6,14 @@ const updateHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 20);
 };
 
+const closeNav = () => {
+  if (!document.body.classList.contains("nav-open")) return;
+
+  document.body.classList.remove("nav-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", "Menü öffnen");
+};
+
 window.addEventListener("scroll", updateHeader, { passive: true });
 updateHeader();
 
@@ -17,9 +25,13 @@ navToggle.addEventListener("click", () => {
 
 nav.addEventListener("click", (event) => {
   if (event.target.closest("a")) {
-    document.body.classList.remove("nav-open");
-    navToggle.setAttribute("aria-expanded", "false");
-    navToggle.setAttribute("aria-label", "Menü öffnen");
+    closeNav();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeNav();
   }
 });
 
