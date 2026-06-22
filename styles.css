@@ -1403,6 +1403,14 @@ address {
   gap: 16px;
 }
 
+.form-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1492,6 +1500,14 @@ address {
   border: 1px solid rgba(43, 33, 23, 0.15);
   background: rgba(255, 255, 255, 0.56);
   color: var(--ink);
+}
+
+.form-status {
+  min-height: 1.4em;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
 }
 
 .contact-sidebar {

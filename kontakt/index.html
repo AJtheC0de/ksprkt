@@ -6,7 +6,7 @@
     <title>Kontakt | KS Parkett & Fußbodentechnik München</title>
     <meta
       name="description"
-      content="Kontakt zu KS Parkett & Fußbodentechnik in München: Telefon, E-Mail, Adresse und Beratung vor Ort für Parkett und Bodenbeläge."
+      content="Kontakt zu KS Parkett & Fußbodentechnik in München: Telefon, Kontaktformular, Adresse und Beratung vor Ort für Parkett und Bodenbeläge."
     />
     <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -78,7 +78,7 @@
               <span>planen.</span>
             </h1>
             <p>
-              Rufen Sie uns an oder schreiben Sie eine E-Mail. Wir klären Ihr
+              Rufen Sie uns an oder nutzen Sie das Kontaktformular. Wir klären Ihr
               Vorhaben, prüfen auf Wunsch die Fläche vor Ort und erstellen ein
               transparentes Angebot.
             </p>
@@ -86,8 +86,8 @@
               <a class="button primary" href="tel:+4917667756118"
                 >Jetzt anrufen</a
               >
-              <a class="button secondary" href="mailto:info@ks-parkett.de"
-                >E-Mail senden</a
+              <a class="button secondary" href="/kontakt/"
+                >Anfrage senden</a
               >
             </div>
           </div>
@@ -108,14 +108,14 @@
             </div>
             <div class="panel-actions">
               <a class="panel-call-button" href="tel:+4917667756118">Anrufen</a>
-              <a class="panel-mail-button" href="mailto:info@ks-parkett.de"
-                >E-Mail senden</a
+              <a class="panel-mail-button" href="/kontakt/"
+                >Anfrage senden</a
               >
             </div>
           </aside>
         </section>
 
-        <section class="contact-section section-pad">
+        <section class="contact-section section-pad" id="kontaktformular">
           <div class="contact-form-card reveal">
             <div class="section-heading">
               <p class="eyebrow">Anfrage senden</p>
@@ -128,10 +128,25 @@
 
             <form
               class="contact-form"
-              action="mailto:info@ks-parkett.de"
-              method="post"
-              enctype="text/plain"
+              action="/api/contact" method="post" data-contact-form
             >
+              <input type="hidden" name="started_at" data-form-started-at />
+              <input type="hidden" name="turnstile_token" data-turnstile-token />
+              <label class="form-trap" aria-hidden="true" tabindex="-1">
+                <span>Website</span>
+                <input
+                  type="text"
+                  name="website"
+                  autocomplete="off"
+                  tabindex="-1"
+                />
+              </label>
+              <div
+                class="cf-turnstile"
+                data-sitekey=""
+                data-callback="ksParkettTurnstile"
+                hidden
+              ></div>
               <div class="form-grid">
                 <label>
                   <span>Name</span>
@@ -205,6 +220,7 @@
                   >Anrufen</a
                 >
               </div>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
             </form>
           </div>
 
@@ -236,8 +252,8 @@
               <p class="eyebrow">Direkter Kontakt</p>
               <h3>Für eilige Termine lieber kurz anrufen.</h3>
               <a class="button primary" href="tel:+4917667756118">Anrufen</a>
-              <a class="contact-mail" href="mailto:info@ks-parkett.de"
-                >info@ks-parkett.de</a
+              <a class="contact-mail" href="/kontakt/"
+                >E-Mail anzeigen</a
               >
             </div>
           </div>
@@ -296,7 +312,7 @@
             <span>Guardinistraße 16</span>
             <span>81375 München</span>
             <a href="tel:+4917667756118">0176 677 56 118</a>
-            <a href="mailto:info@ks-parkett.de">info@ks-parkett.de</a>
+            <a class="protected-mail" href="/kontakt/" data-mail-user="info" data-mail-domain="ks-parkett" data-mail-tld="de">E-Mail anzeigen</a>
             <span>Mo - Sa, 09:00 - 19:00 Uhr</span>
           </address>
         </div>
