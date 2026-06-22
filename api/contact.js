@@ -4,19 +4,102 @@ const MIN_SUBMIT_MS = 4000;
 const MAX_FIELD_LENGTH = 3000;
 const buckets = new Map();
 
-const spamTerms = [
-  "casino",
-  "crypto",
-  "viagra",
-  "loan",
-  "betting",
-  "forex",
-  "seo package",
-  "backlink",
-  "porn",
-  "telegram",
-  "whatsapp marketing",
+const SPAM_WORDS = [
+  ...new Set([
+    "casino",
+    "crypto",
+    "viagra",
+    "loan",
+    "betting",
+    "forex",
+    "seo package",
+    "backlink",
+    "porn",
+    "telegram",
+    "whatsapp marketing",
+    "seo",
+    "seo paket",
+    "seo service",
+    "seo services",
+    "suchmaschinenoptimierung",
+    "search engine optimization",
+    "backlinks",
+    "linkbuilding",
+    "link building",
+    "keyword ranking",
+    "google ranking",
+    "google rankings",
+    "ranking verbessern",
+    "google bewertung",
+    "google bewertungen",
+    "google review",
+    "google reviews",
+    "google rating",
+    "google ratings",
+    "5 sterne bewertung",
+    "5 star review",
+    "bewertungen kaufen",
+    "buy reviews",
+    "trustpilot",
+    "webdesign",
+    "web design",
+    "webdesigner",
+    "website redesign",
+    "website design",
+    "website development",
+    "web development",
+    "neue website",
+    "new website",
+    "homepage erstellen",
+    "redesign your website",
+    "marketing agentur",
+    "marketing agency",
+    "digital marketing",
+    "online marketing",
+    "social media marketing",
+    "lead generation",
+    "leadgenerierung",
+    "generate leads",
+    "mehr kunden",
+    "more customers",
+    "increase traffic",
+    "increase leads",
+    "google ads",
+    "facebook ads",
+    "instagram ads",
+    "ppc campaign",
+    "email marketing",
+    "ai automation",
+    "ki automatisierung",
+    "ai agency",
+    "ki agentur",
+    "chatgpt",
+    "chatbot",
+    "virtual assistant",
+    "guest post",
+    "sponsored post",
+    "partnership opportunity",
+    "business proposal",
+    "quick question",
+    "i found your website",
+    "improve your website",
+    "grow your business",
+    "kredit",
+  ]),
 ];
+
+const SPAM_DOMAINS = [
+  "@outlookindia.com",
+  "@yandex.com",
+  "@mail.ru",
+  "@163.com",
+  "@qq.com",
+];
+
+const BLOCKED_URL_PATTERN = /\b(?:https?:\/\/|www\.)/i;
+const URL_PATTERN =
+  /\b(?:https?:\/\/|www\.)[^\s]+|(?<![@\w-])(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:com|de|net|org|info|biz|io|co|ru|cn|ch|at|eu|uk|us|xyz|site|online|shop|app|dev|ai)\b/gi;
+const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi;
 
 const getClientIp = (request) => {
   const forwardedFor = request.headers["x-forwarded-for"];
@@ -69,9 +152,24 @@ const rateLimit = (ip) => {
   return current.count <= RATE_LIMIT_MAX;
 };
 
+const getPayloadText = (payload) =>
+  Object.values(payload)
+    .map((value) => String(value))
+    .join(" ")
+    .toLowerCase();
+
+const countMatches = (text, pattern) => (text.match(pattern) || []).length;
+
 const hasSpam = (payload) => {
-  const text = Object.values(payload).join(" ").toLowerCase();
-  return spamTerms.some((term) => text.includes(term));
+  const text = getPayloadText(payload);
+
+  return (
+    SPAM_WORDS.some((term) => text.includes(term)) ||
+    SPAM_DOMAINS.some((domain) => text.includes(domain)) ||
+    BLOCKED_URL_PATTERN.test(text) ||
+    countMatches(text, URL_PATTERN) > 3 ||
+    countMatches(text, EMAIL_PATTERN) > 3
+  );
 };
 
 const verifyTurnstile = async (token, ip) => {
